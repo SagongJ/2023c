@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+union Number 
+{
+    int num;
+    float pointnum;
+    char word;
+};
+
+int main() 
+{
+    union Number num;
+
+    num.num = 10;
+    printf("정수 값: %d\n", num.num);
+
+    num.pointnum = 3.14;
+    printf("소수점 값: %f\n", num.pointnum);
+
+    num.word = 'A';
+    printf("문자 값: %c\n", num.word);
+
+    return 0;
+}
