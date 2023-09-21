@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+#define NUM_STUDENTS 3
+#define NUM_SUBJECTS 2
+
+struct Grade 
+{
+    char name[20];
+    int scores[NUM_SUBJECTS];
+    float average;
+};
+
+int main() {
+  
+    struct Grade grades[NUM_STUDENTS] = 
+    {
+        {"John", {80, 75}, 0},
+        {"Jane", {90, 85}, 0},
+        {"Bob", {70, 60}, 0}
+    };
+
+    for (int i = 0; i < NUM_STUDENTS; i++) 
+    {
+        int total = 0;
+        for (int j = 0; j < NUM_SUBJECTS; j++) 
+        {
+            total += grades[i].scores[j];
+        }
+        grades[i].average = (float)total / NUM_SUBJECTS;
+    }
+
+    float subjectAverages[NUM_SUBJECTS] = {0};
+    for (int i = 0; i < NUM_STUDENTS; i++) 
+    {
+        for (int j = 0; j < NUM_SUBJECTS; j++) 
+        {
+            subjectAverages[j] += grades[i].scores[j];
+        }
+    }
+    for (int j = 0; j < NUM_SUBJECTS; j++) 
+    {
+        subjectAverages[j] /= NUM_STUDENTS;
+    }
+
+    printf("개인별 성적과 평균:\n");
+    for (int i = 0; i < NUM_STUDENTS; i++) 
+    {
+        printf("%s: %d %d, 평균 %.2f\n", grades[i].name, grades[i].scores[0], grades[i].scores[1], grades[i].average);
+    }
+
+    printf("\n과목별 평균:\n");
+    for (int j = 0; j < NUM_SUBJECTS; j++) 
+    {
+        printf("과목 %d: 평균 %.2f\n", j + 1, subjectAverages[j]);
+    }
+  
+    return 0;
+}
