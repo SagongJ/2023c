@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+// 3x2 매트릭스와 2x3 매트릭스의 곱 함수
+void matMul(int A[3][2], int B[2][3], int R[3][3]) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            R[i][j] = 0;
+            for (int k = 0; k < 2; k++) {
+                R[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+}
+
+int main() {
+    int A[3][2] = {{1, 1}, {1, 1}, {1, 1}}; // 3x2 
+    int B[2][3] = {{1, 1, 1}, {1, 1, 1}}; // 2x3 
+    int R[3][3];
+
+    // 매트릭스 곱셈 
+    matMul(A, B, R);
+
+
+    printf("Resulting Matrix:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%3d ", R[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
